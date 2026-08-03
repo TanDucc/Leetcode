@@ -1,0 +1,20 @@
+from typing import List
+
+def find132Patern(self, nums: List[int]) -> bool:
+    stack = []
+    curMin = nums[0]
+
+    for n in nums[1:]:
+        while stack and n >= stack[-1][0]:
+            stack.pop()
+        if stack and n > stack[-1][1]:
+            return True
+        stack.append((n, curMin))
+        curMin = min(curMin, n)
+    
+    return False
+
+# Example usage:
+nums = [3, 1, 4, 2]
+result = find132Patern(None, nums)
+print(result)  

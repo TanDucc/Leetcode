@@ -1,0 +1,21 @@
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+def kthSmallest(root: TreeNode, k: int) -> int:
+    stack = []
+    n = 0
+    cur = root
+    
+    while stack or cur:
+        while cur:
+            stack.append(cur)
+            cur = cur.left
+        cur = stack.pop()
+        n += 1
+        
+        if n == k:
+            return cur.val
+        cur = cur.right
+        
